@@ -4,10 +4,7 @@ import 'dart:convert';
 
 import '../productmodel/productmodel.dart';
 
-OrderModel orderModelFromJson(String str)=>
-    OrderModel.fromJson(json.decode(str));
 
-String productModelToJson(ProductModel data)=>json.encode(data.toJson());
 
 
 class OrderModel {
@@ -35,27 +32,8 @@ class OrderModel {
         status: json["status"],
         payment: json["payment"]);
   }
-  Map<String,dynamic> toJson()=> {
-    "id":orderId,
-    "payment":payment,
-    "products":products,
-    "status":status,
-    "totalprice":totalPrice,
 
-  };
 
-  OrderModel copyWith({
-    int? qty,
-  })=>
-
-      OrderModel(
-        orderId: orderId,
-        payment:payment,
-        products:products,
-        status:status,
-         totalPrice: totalPrice,
-
-      );
 
 }
 

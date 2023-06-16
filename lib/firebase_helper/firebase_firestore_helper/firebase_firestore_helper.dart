@@ -30,6 +30,7 @@ class FirebaseFirestoreHelper {
     }
   }
 
+
   Future<List<ProductModel>> getBestProducts() async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
@@ -82,7 +83,9 @@ class FirebaseFirestoreHelper {
       showLoaderDialog(context);
       double totalPrice = 0.0;
       for (var element in list) {
-        totalPrice += (element.price * element.qty!) as double;
+
+        totalPrice += element.price * element.qty!;
+
       }
       DocumentReference documentReference = _firebaseFirestore
           .collection("usersOrders")
@@ -132,6 +135,7 @@ class FirebaseFirestoreHelper {
 
       return orderList;
     } catch (e) {
+
       showMessage(e.toString());
       return [];
     }

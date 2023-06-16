@@ -12,7 +12,7 @@ class UserModel{
 
         required this.id,
         required this.name,
-         this.image,
+        required this.image,
         required this.email,
       }
       );
@@ -47,8 +47,5 @@ class UserModel{
         email: email,
 
       );
-
-
-
 
 }

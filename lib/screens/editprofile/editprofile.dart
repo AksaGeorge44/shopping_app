@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app1/models/usermodel/usermodel.dart';
 import 'package:shopping_app1/provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
@@ -18,7 +19,7 @@ class _EditProfileState extends State<EditProfile> {
   File?image;
 
   void takePicture()async{
- XFile?value= await ImagePicker().pickImage(source: ImageSource.gallery);
+ XFile?value= await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 40);
 
  if(value!=null){
    setState(() {
@@ -28,55 +29,63 @@ class _EditProfileState extends State<EditProfile> {
  }
 
   }
+  TextEditingController name=TextEditingController();
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider=Provider.of<AppProvider>(
       context,
     );
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text("Profile",style: TextStyle(color: Colors.black),),
       ),
-
-
       body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: CupertinoButton(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+
+    children: [
+          image==null?
+    CupertinoButton(
               onPressed: (){
                 takePicture();
 
               },
-              child: CircleAvatar(
+              child:const CircleAvatar(
                 radius: 70,
-                child: image==null?
+                child:
+                 Icon(Icons.camera_alt)),)
+                : CupertinoButton(
+        onPressed: (){
+      takePicture();
 
-                const Icon(Icons.camera_alt):Image.file(image!),
-              ),
-            ),
-          ),
-          const SizedBox(height: 12,),
+    },
+    child: CircleAvatar(
+    backgroundImage:FileImage(image!),
+    radius: 70,
+   ),
+    ),
+          const SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: TextFormField(
+              controller: name,
               decoration: InputDecoration(
+                hintText: appProvider.getUserInformation.name,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                hintText: "Name",
                // hintText: appProvider.getUserInformation.name,
               ),
             ),
           ),
 
-          const SizedBox(height: 24,),
+          const SizedBox(height: 10,),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton(onPressed: (){},
-                child: const Text("Update")),
+            padding: const EdgeInsets.all(8),
+            child: TextButton(onPressed: ()async{
+             UserModel userModel=appProvider.getUserInformation.copyWith(name: name.text);
+             appProvider.updateUserInfoFirebase(context, userModel, image);
+            },
+                child: const Text("Update",style: TextStyle(fontSize: 25),)),
           )
 
         ],

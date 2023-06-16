@@ -75,7 +75,7 @@ String getMessageFromErrorCode(String errorCode) {
   }
 }
 
-bool loginVaildation(String email, String password) {
+bool loginValidation(String email, String password) {
   if (email.isEmpty && password.isEmpty) {
     showMessage("Both Fields are empty");
     return false;
@@ -90,7 +90,7 @@ bool loginVaildation(String email, String password) {
   }
 }
 
-bool signUpVaildation(
+bool signUpValidation(
     String email, String password, String name, String phone) {
   if (email.isEmpty && password.isEmpty && name.isEmpty && phone.isEmpty) {
     showMessage("All Fields are empty");

@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 class DefaultFirebaseConfig {
   static FirebaseOptions get platformOptions {
-    if (Platform.isWindows) {
+    if (Platform.isIOS) {
       // iOS and MacOS
       return const FirebaseOptions(
         appId: '',
@@ -22,5 +22,8 @@ class DefaultFirebaseConfig {
         messagingSenderId: '273780875506',
       );
     }
+
+
+
   }
 }

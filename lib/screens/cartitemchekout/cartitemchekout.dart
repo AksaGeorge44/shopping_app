@@ -117,6 +117,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
             PrimaryButton(
               title: "Continues",
               onPressed: () async {
+
                 if (groupValue == 1) {
                   bool value = await FirebaseFirestoreHelper.instance
                       .uploadOrderedProductFirebase(
@@ -137,7 +138,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
                       appProvider.totalPriceBuyProductList().toString())
                       .round()
                       .toInt();
-                  String totalPrice = (value * 100).toString();
+                  double totalPrice = (value * 100);
                   await StripeHelper.instance
                       .makePayment(totalPrice.toString(), context);
                 }

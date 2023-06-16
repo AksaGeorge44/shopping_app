@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:shopping_app1/screens/accountscreen/accountscreen.dart';
 import 'package:shopping_app1/screens/cartscreen/cartscreen.dart';
-import 'package:shopping_app1/screens/favscreen/favscreen.dart';
+import 'package:shopping_app1/screens/orderscreen/orderscreen.dart';
 
 import '../home/home.dart';
 
 class CustomBottomBar extends StatefulWidget {
-  const CustomBottomBar({ final Key? key})
-      : super(key: key);
- // final BuildContext menuScreenContext;
+  const CustomBottomBar({ final Key? key}) : super(key: key);
 
   @override
   _CustomBottomBarState createState() => _CustomBottomBarState();
@@ -22,8 +20,8 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
 
   List<Widget> _buildScreens() => [
     const Home(),
-     const CartScreen(),
-    const FavouriteScreen(),
+    const CartScreen(),
+    const OrderScreen(),
     const AccountScreen(),
 
   ];
@@ -32,7 +30,6 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
     PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         inactiveIcon: const Icon(Icons.home_outlined),
-
         title: "Home",
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white,
@@ -45,10 +42,9 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
       inactiveColorPrimary: Colors.white,
     ),
     PersistentBottomNavBarItem(
-      icon: const Icon(Icons.favorite),
-      inactiveIcon: const Icon(Icons.favorite_outline_rounded),
-
-      title: "Favourite",
+      icon: const Icon(Icons.circle_outlined),
+      inactiveIcon: const Icon(Icons.circle_outlined),
+      title: "Orders",
       activeColorPrimary: Colors.white,
       inactiveColorPrimary: Colors.white,
     ),
@@ -77,11 +73,6 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           ? 0.0
           : kBottomNavigationBarHeight,
       bottomScreenMargin: 0,
-
-
-
-
-
       backgroundColor: Colors.redAccent,
       hideNavigationBar: _hideNavBar,
       decoration: const NavBarDecoration(colorBehindNavBar: Colors.indigo),

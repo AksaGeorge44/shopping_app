@@ -4,7 +4,6 @@ import 'package:shopping_app1/screens/auth_ui/sign_up/signup.dart';
 import 'package:shopping_app1/widgets/primary_button/primary_button.dart';
 import 'package:shopping_app1/widgets/top_titles/top_titles.dart';
 
-import '../../../constants/asset_images.dart';
 import '../../../constants/routes.dart';
 
 class Welcome extends StatelessWidget {
@@ -19,20 +18,16 @@ class Welcome extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TopTitles(title: "Welcome", subtitle:"Buy Products"),
-              Center(child: Padding(
-                padding: const EdgeInsets.all(8.0),
+               const TopTitles(title: "", subtitle:"Buy Products"),
+              const Center(child: Padding(
+                padding: EdgeInsets.all(8.0),
 
-                child: Image.asset(AssetImages.instance.welcomeImage,
-                height: 350,
-                alignment: Alignment.center,
-                ),
+                child: Text("Welcome",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
 
               ),
 
-
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 45,width: double.infinity,
                 child: ElevatedButton(onPressed: (

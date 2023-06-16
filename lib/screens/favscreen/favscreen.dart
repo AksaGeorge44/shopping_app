@@ -10,22 +10,14 @@ class FavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider =Provider.of<AppProvider>(context);
-
-
     return Scaffold(
-
       appBar: AppBar(
-
-        title: const Text("FavouriteScreen",style: TextStyle(color: Colors.black),
+        title: const Text("Favourites",style: TextStyle(color: Colors.black),
         ),
-
-
-
       ),
-
-      body: appProvider.getFavouriteProductList.isEmpty?const Center(child: Text("Empty"),
+      body: appProvider.getFavouriteProductList.isEmpty?
+      const Center(child: Text("Empty"),
       ):
-
       Padding(
         padding: const EdgeInsets.all(15),
         child: ListView.builder(

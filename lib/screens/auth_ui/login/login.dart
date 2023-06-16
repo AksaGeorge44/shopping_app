@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app1/constants/constants.dart';
 import 'package:shopping_app1/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:shopping_app1/screens/auth_ui/sign_up/signup.dart';
-import 'package:shopping_app1/screens/home/home.dart';
+import 'package:shopping_app1/screens/custombtmbar/custombtmbar.dart';
 import 'package:shopping_app1/widgets/primary_button/primary_button.dart';
 import '../../../constants/routes.dart';
 
@@ -63,7 +63,7 @@ TextEditingController password=TextEditingController();
               ),
             ),
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.all(20),
             child: PrimaryButton(title: "Login",onPressed: () async {
@@ -73,16 +73,17 @@ TextEditingController password=TextEditingController();
               print(getemail);
               print(getpassword);
 
-          // bool isValidated = loginVaildation(email.text, password.text);
-           //if(isValidated){
-          //bool isLoginied = await  FirebaseAuthHelper.instance.login(email.text, password.text, context);
-          //if(isLoginied){Routes.instance.pushAndRemoveUntil(widget: const Home(), context: context);}}
+              bool isValidated = loginValidation(email.text, password.text);
+           if(isValidated){
+          bool isLoginied = await  FirebaseAuthHelper.instance.login(email.text, password.text, context);
+          if(isLoginied){
+            Routes.instance.pushAndRemoveUntil(widget: const CustomBottomBar(), context: context);}}
 
             },),
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(height: 10,),
           const Center(child: Text("Don't have an account?")),
-          const SizedBox(height: 15,),
+          const SizedBox(height: 10,),
           Center(child: CupertinoButton(
               onPressed: (){
                 Routes.instance.push(widget:const SignUp(),context:context);
