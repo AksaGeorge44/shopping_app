@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "ecommerceapp-3c706",
+    "staging": "ecommerceapp-3c706"
+  },
+  "targets": {},
+  "etags": {}
+}
